@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 17px;
+}
+
+.avatar {
+  margin-right: 15px;
+}
+
+.form {
+  width: 100%;
+  color: #fff;
+
+  button {
+    margin-top: 10px;
+  }
+  .first_btn {
+    margin-right: 1rem;
+    color: #fff;
+    border-radius: 20px;
+    border: 2px solid;
+    border: none;
+    padding: 0.5rem 1rem;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #cf088c;
+    &:hover {
+      background-color: #830559;
+      color: #b3b3b3;
+    }
+  }
+}

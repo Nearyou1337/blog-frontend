@@ -1,0 +1,36 @@
+.root {
+  width: 400px;
+  padding: 50px;
+  border: none;
+  margin: 50px auto;
+  border-radius: 10px;
+}
+
+.field {
+  margin-bottom: 20px !important;
+  color: #fff;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bold !important;
+  margin-bottom: 30px !important;
+}
+.first_btn {
+  width: 100%;
+  color: #fff;
+  border-radius: 15px;
+  border: 2px solid;
+  border: none;
+  padding: 0.5rem 3rem;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: #cf088c;
+  &:hover {
+    background-color: #830559;
+    color: #b3b3b3;
+  }
+}
