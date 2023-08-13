@@ -1,33 +1,54 @@
 import React from "react";
 
+import { useParams } from "react-router-dom";
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
 import { CommentsBlock } from "../components/CommentsBlock";
+import { motion } from "framer-motion";
+import { postVariantPosts } from "../utils/motion";
+import axios from "../axios";
 
 export const FullPost = () => {
+  const [data, setData] = React.useState();
+  const [isLoading, setLoading] = React.useState(true);
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    axios
+      .get(`/posts/${id}`)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+        console.log("djsb");
+      })
+      .catch((error) => {
+        console.warn(error);
+        alert("Не получил статью");
+      });
+  }, []);
+
+  if (isLoading) {
+    return <Post isLoading={isLoading} isFullPost />;
+  }
+
   return (
-    <>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={postVariantPosts}
+    >
       <Post
-        id={1}
-        title="Why are bald men so cool"
-        imageUrl="https://fikiwiki.com/uploads/posts/2022-02/1644894977_1-fikiwiki-com-p-kartinka-boitsovskii-klub-1.jpg"
-        user={{
-          avatarUrl:
-            "https://w.forfun.com/fetch/ba/ba99ec5040cc649c2f697d61818087f0.jpeg",
-          fullName: "Nikita Loktev",
-        }}
-        createdAt={"23 июkя 2023 г."}
-        viewsCount={50}
-        commentsCount={6}
-        tags={["bald", "cool", "lokot"]}
+        id={data._id}
+        title={data.title}
+        imageUrl={data.imageUrl}
+        user={data.user}
+        createdAt={data.createdAt}
+        viewsCount={data.viewsCount}
+        commentsCount={0}
+        tags={data.tags}
         isFullPost
       >
-        <p>
-          Hey there! You may ask why all the bald men in movies and books are so
-          masculine and strong. and I will answer you: what is on your head
-          speaks directly about who you are. A bald head is dangerous, brutal
-          and stylish
-        </p>
+        <p>{data.text}</p>
       </Post>
       <CommentsBlock
         items={[
@@ -52,6 +73,6 @@ export const FullPost = () => {
       >
         <Index />
       </CommentsBlock>
-    </>
+    </motion.div>
   );
 };

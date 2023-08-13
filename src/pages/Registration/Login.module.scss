@@ -4,9 +4,23 @@
   border: none;
   margin: 50px auto;
 }
+.root {
+  @media screen and (max-width: 800px) {
+    width: 18rem !important;
+  }
+}
 
 .field {
   margin-bottom: 20px !important;
+  & :where(:global(.MuiOutlinedInput-notchedOutline)) {
+    border-color: #ffffff9f !important;
+  }
+  & :where(:global(.MuiInputLabel-root)) {
+    color: #ffffff !important;
+  }
+  & :where(:global(.MuiOutlinedInput-root)) {
+    color: #ffffff !important;
+  }
 }
 
 .title {

@@ -1,0 +1,16 @@
+.second_tab {
+  color: rgb(219, 219, 219) !important;
+}
+.grid_side {
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+.grid_post {
+  width: 66%;
+}
+.grid_post {
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+}

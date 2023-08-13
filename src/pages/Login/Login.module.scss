@@ -5,10 +5,26 @@
   margin: 50px auto;
   border-radius: 10px;
 }
+.root {
+  @media screen and (max-width: 800px) {
+    width: 18rem !important;
+  }
+}
 
 .field {
+  // MuiOutlinedInput-root
+  border-radius: 8px;
   margin-bottom: 20px !important;
   color: #fff;
+  & :where(:global(.MuiOutlinedInput-notchedOutline)) {
+    border-color: #ffffff9f !important;
+  }
+  & :where(:global(.MuiInputLabel-root)) {
+    color: #ffffff !important;
+  }
+  & :where(:global(.MuiOutlinedInput-root)) {
+    color: #ffffff !important;
+  }
 }
 
 .title {

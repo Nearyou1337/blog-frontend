@@ -3,11 +3,11 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import SimpleMDE from "react-simplemde-editor";
+import { motion } from "framer-motion";
+import { postVariantPosts } from "../../utils/motion";
 
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
-
-// CodeMirror cm-s-easymde CodeMirror-wrap CodeMirror-empty
 
 export const AddPost = () => {
   const imageUrl = "";
@@ -37,56 +37,62 @@ export const AddPost = () => {
   );
 
   return (
-    <Paper
-      sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
-      }}
-      style={{ padding: 30 }}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      variants={postVariantPosts}
     >
-      <Button variant="outlined" size="large">
-        Upload picture
-      </Button>
-      <input type="file" onChange={handleChangeFile} hidden />
-      {imageUrl && (
-        <Button variant="contained" color="error" onClick={onClickRemoveImage}>
-          Delete
-        </Button>
-      )}
-      {imageUrl && (
-        <img
-          className={styles.image}
-          src={`http://localhost:4444${imageUrl}`}
-          alt="Uploaded"
+      <Paper
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+        }}
+        style={{ padding: 30 }}
+      >
+        <button className={styles.first_btn}>Upload picture</button>
+        <input type="file" onChange={handleChangeFile} hidden />
+        {imageUrl && (
+          <Button
+            variant="contained"
+            color="error"
+            onClick={onClickRemoveImage}
+          >
+            Delete
+          </Button>
+        )}
+        {imageUrl && (
+          <img
+            className={styles.image}
+            src={`http://localhost:4444${imageUrl}`}
+            alt="Uploaded"
+          />
+        )}
+        <br />
+        <br />
+        <TextField
+          classes={{ root: styles.title }}
+          variant="standard"
+          placeholder="Article title..."
+          fullWidth
         />
-      )}
-      <br />
-      <br />
-      <TextField
-        classes={{ root: styles.title }}
-        variant="standard"
-        placeholder="Article title..."
-        fullWidth
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Tags"
-        fullWidth
-      />
-      <SimpleMDE
-        className={styles.editor}
-        value={value}
-        onChange={onChange}
-        options={options}
-      />
-      <div className={styles.buttons}>
-        <Button size="large" variant="contained">
-          Send
-        </Button>
-        <a href="/">
-          <Button size="large">Cancel</Button>
-        </a>
-      </div>
-    </Paper>
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Tags..."
+          fullWidth
+        />
+        <SimpleMDE
+          className={styles.editor}
+          value={value}
+          onChange={onChange}
+          options={options}
+        />
+        <div className={styles.buttons}>
+          <button className={styles.first_btn}>Send</button>
+          <a href="/">
+            <button className={styles.second_btn}>Cancel</button>
+          </a>
+        </div>
+      </Paper>
+    </motion.div>
   );
 };

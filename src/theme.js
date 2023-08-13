@@ -20,9 +20,6 @@ export const theme = createTheme({
     },
   },
   typography: {
-    // a: {
-    //   color: "#fff",
-    // },
     button: {
       color: "#fff",
       textTransform: "none",
