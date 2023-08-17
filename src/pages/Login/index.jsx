@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
-import { fetchUserData, selectIsAuth } from "../../redux/slices/auth";
+import { fetchUserData } from "../../redux/slices/auth.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -11,7 +11,8 @@ import { useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
 
 export const Login = () => {
-  const isAuth = useSelector(selectIsAuth);
+  const isAuth = useSelector((state) => state.auth.isLogedIn);
+
   const dispatch = useDispatch();
   const {
     register,
