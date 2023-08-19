@@ -26,9 +26,17 @@ export const Login = () => {
     },
     mode: "onChange",
   });
-  const onSubmit = (values) => {
-    dispatch(fetchUserData(values));
+  const onSubmit = async (values) => {
+    const data = await dispatch(fetchUserData(values));
+    if (!data.payload) {
+      return alert("Invalid token");
+    }
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    }
+    console.log(data);
   };
+
   console.log(isAuth);
   if (isAuth) {
     return <Navigate to="/" />;
@@ -68,7 +76,11 @@ export const Login = () => {
             fullWidth
             {...register("password", { required: "Укажите пароль" })}
           />
-          <button type="submit" className={styles.first_btn}>
+          <button
+            disabled={!isValid}
+            type="submit"
+            className={styles.first_btn}
+          >
             Come in
           </button>
         </form>

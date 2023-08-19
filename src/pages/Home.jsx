@@ -15,6 +15,7 @@ import "./../pages/Home.scss";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
 
 export const Home = () => {
+  const userData = useSelector((state) => state.auth.data);
   const { posts, tags } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const isPostLoading = posts.status === "loading";
@@ -67,7 +68,7 @@ export const Home = () => {
                   viewsCount={obj.viewsCount}
                   commentsCount={0}
                   tags={obj.tags}
-                  isEditable
+                  isEditable={userData?._id === obj.user._id}
                 />
               )
             )}

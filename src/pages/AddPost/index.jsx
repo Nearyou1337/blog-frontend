@@ -5,13 +5,18 @@ import Button from "@mui/material/Button";
 import SimpleMDE from "react-simplemde-editor";
 import { motion } from "framer-motion";
 import { postVariantPosts } from "../../utils/motion";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { Navigate } from "react-router-dom";
 
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 
 export const AddPost = () => {
+  const isAuth = useSelector((state) => state.auth.isLogedIn);
   const imageUrl = "";
   const [value, setValue] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [tags, setTags] = React.useState("");
 
   const handleChangeFile = () => {};
 
@@ -35,6 +40,10 @@ export const AddPost = () => {
     }),
     []
   );
+  if (!window.localStorage.getItem("token") && !isAuth) {
+    return <Navigate to="/" />;
+  }
+  // console.log({ title, tags, value });
 
   return (
     <motion.div
@@ -72,6 +81,8 @@ export const AddPost = () => {
           classes={{ root: styles.title }}
           variant="standard"
           placeholder="Article title..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           fullWidth
         />
         <TextField
@@ -79,6 +90,8 @@ export const AddPost = () => {
           variant="standard"
           placeholder="Tags..."
           fullWidth
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
         />
         <SimpleMDE
           className={styles.editor}

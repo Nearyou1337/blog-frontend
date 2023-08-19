@@ -5,10 +5,18 @@ import { navVariants } from "../../utils/motion";
 import styles from "./Header.module.scss";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/auth";
 
 export const Header = () => {
-  const isAuth = false;
-  const onClickLogout = () => {};
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.auth.isLogedIn);
+  const onClickLogout = () => {
+    if (window.confirm("Вы хотите выйти?")) {
+      dispatch(logout());
+      window.localStorage.removeItem("token");
+    }
+  };
 
   return (
     <motion.div variants={navVariants} initial="hidden" whileInView="show">
@@ -20,7 +28,7 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <Link to="/posts/create">
+                <Link to="/add-post">
                   <button className={styles.first_btn}>Write</button>
                 </Link>
 
