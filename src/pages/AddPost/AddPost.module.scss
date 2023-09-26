@@ -19,6 +19,7 @@ input:-internal-autofill-selected {
 
 .image {
   width: 100%;
+  border-radius: 10px;
 }
 
 .tags {
@@ -55,6 +56,8 @@ input:-internal-autofill-selected {
       color: #ffffff;
       border: 0;
       font-size: 22px;
+      min-height: 250px;
+      height: 250px;
     }
     .editor-toolbar {
       border: 0;
@@ -95,6 +98,22 @@ input:-internal-autofill-selected {
   }
 }
 .second_btn {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  background: none;
+  padding: 0.8rem 1.3rem;
+  &:hover {
+    color: #b3b3b3;
+    border-color: #b3b3b3;
+  }
+}
+.del_btn {
+  margin: 0 0rem 0.5rem 1rem;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

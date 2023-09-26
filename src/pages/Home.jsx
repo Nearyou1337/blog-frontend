@@ -62,7 +62,9 @@ export const Home = () => {
                 <Post
                   id={obj._id}
                   title={obj.title}
-                  imageUrl={obj.imageUrl}
+                  imageUrl={
+                    obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ""
+                  }
                   user={obj.user}
                   createdAt={obj.createdAt}
                   viewsCount={obj.viewsCount}
@@ -79,17 +81,19 @@ export const Home = () => {
               items={[
                 {
                   user: {
-                    fullName: "Вася Пупкин",
-                    avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+                    fullName: "Evgeny",
+                    avatarUrl:
+                      "https://sun6-20.userapi.com/impg/3qTOdn27me2FYISaeyd_Jjd5qFfTW0GE8_v9pA/koqZgmhQ7Mo.jpg?size=720x720&quality=95&sign=48e8fb7e19d604ca569009942ff5b88d&c_uniq_tag=MfjrI2k0V9v5A5QEcU2rOQoG2xVWnYTSGmhScqZfuDs&type=album",
                   },
-                  text: "Это тестовый комментарий",
+                  text: "My comment",
                 },
                 {
                   user: {
-                    fullName: "Иван Иванов",
-                    avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                    fullName: "Ivan Zonin",
+                    avatarUrl:
+                      "https://journal.litres.ru/wp-content/uploads/2020/11/baker-fightclub-2048x1366.jpg",
                   },
-                  text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
+                  text: "My second comment",
                 },
               ]}
               isLoading={false}
